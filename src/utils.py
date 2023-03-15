@@ -27,11 +27,10 @@ def evaluate(X_train , y_train , X_test , y_test , models ,param):
     report = {}
 
     for i in range(len(list(models))):
+        # import pdb; pdb.set_trace()
+        model = list(models.values())[i]
+        para= param[list(models.keys())[i]]
         
-        model = list(model.values())[i]
-        para= param[list(model.keys())[i]]
-        
-
         gs = GridSearchCV(model,para,cv=3)
         gs.fit(X_train,y_train)
 
@@ -45,6 +44,6 @@ def evaluate(X_train , y_train , X_test , y_test , models ,param):
         train_model_score = r2_score(y_train , y_train_pred)
         test_model_score = r2_score(y_test, y_test_pred)
 
-        report[list(model.keys())[i]] = test_model_score
+        report[list(models.keys())[i]] = test_model_score
 
         return report

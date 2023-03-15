@@ -27,13 +27,8 @@ class ModelTrainer:
     def initiate_model_trainer(self,train_array,test_array,preprocessor_path):
         try:
             logging.info("Splitting Training and Test input data")
-
-            X_train , y_train, X_test, y_test = {
-                train_array[:,:-1],
-                train_array[:,-1],
-                test_array[:,:-1],
-                test_array[:,-1]
-            }
+        
+            X_train , y_train, X_test, y_test = (train_array[:,:-1], train_array[:,-1], test_array[:,:-1], test_array[:,-1])
 
             models = {
                 "Random Forest" : RandomForestRegressor(),
